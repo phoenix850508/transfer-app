@@ -10,7 +10,7 @@ function NewTransaction() {
       <Dashboard />
       <div className="w-full">
         <Header />
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden max-w-4xl mt-10 m-5 sm:p-2 md:p-5 flex flex-col gap-10">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden max-w-5xl mt-10 m-5 sm:p-2 md:p-5 flex flex-col gap-10">
           <Stepper />
           <TransactionForm />
         </div>

@@ -1,10 +1,12 @@
 import "./App.css";
-import Login from "components/authentication/Login";
-import Redirect from "components/authentication/Redirect";
-import Signup from "components/authentication/Signup";
-import Home from "components/home/Home.js";
-import Transaction from "components/NewTransaction/NewTransaction";
-import Notification from "components/notification/Notification";
+import {
+  Login,
+  Redirect,
+  Signup,
+  Home,
+  Transaction,
+  Notification,
+} from "pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
 import MyAccount from "components/myAccount/MyAccount";
