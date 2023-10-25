@@ -5,7 +5,7 @@ function Dashboard() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-100 sticky">
-      <div className="sidebar min-h-screen w-[3.35rem] overflow-hidden border-r border-[#f3f4f6] bg-[#e2e8f0] sm:hover:w-48 md:hover:w-56 hover:bg-white hover:shadow-lg group sticky top-0 left-0 z-10">
+      <div className="sidebar min-h-screen w-[3.3rem] overflow-hidden border-r border-[#f3f4f6] bg-[#e2e8f0] sm:hover:w-48 md:hover:w-56 hover:bg-white hover:shadow-lg group sticky top-0 left-0 z-10">
         <div className="w-full flex h-screen flex-col justify-between pt-2 pb-6">
           <div className="w-full relative">
             <div className="w-max p-2.5">
@@ -25,7 +25,7 @@ function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="w-full px-4 pt-3 hidden group-hover:inline-block font-semibold flex justify-start text-start text-lg text-gray-600">
+            <div className="w-full px-4 pt-3 inline-block opacity-0 group-hover:opacity-100 font-semibold flex flex-col justify-start text-start text-lg text-gray-600">
               <span>$132,132</span>
               <h2>Account Balance</h2>
             </div>

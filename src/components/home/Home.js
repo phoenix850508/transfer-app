@@ -4,14 +4,22 @@ import Header from "components/header/Header";
 import TransactionCard from "./TransactionCard";
 import Menu from "./menu/Menu";
 import Calendar from "./calendar/Calendar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Spinner from "components/spinner/Spinner";
 
 function Home() {
   const [isCalendarShow, setIsCalendarShow] = useState(false);
   const onDateBtnClick = () => {
     setIsCalendarShow(!isCalendarShow);
   };
+  const [isDataExist, setIsDataExist] = useState(false);
+  const dataArr = [1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 0];
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDataExist(true);
+    }, 2000);
+  }, []);
   return (
     <div className="flex relative">
       <Dashboard />
@@ -26,14 +34,15 @@ function Home() {
           </div>
           <h1 className="text-[#9ca3af] text-xl p-2">Public</h1>
         </div>
-        <TransactionCard />
-        <TransactionCard />
-        <TransactionCard />
-        <TransactionCard />
-        <TransactionCard />
-        <TransactionCard />
-        <TransactionCard />
-        <TransactionCard />
+        <>
+          {isDataExist ? (
+            dataArr.map((_, index) => {
+              return <TransactionCard key={index} />;
+            })
+          ) : (
+            <Spinner />
+          )}
+        </>
       </div>
     </div>
   );
