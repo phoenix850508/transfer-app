@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+function Redirect() {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/login");
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Redirect;

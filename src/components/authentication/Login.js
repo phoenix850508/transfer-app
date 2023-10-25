@@ -48,7 +48,7 @@ function Login() {
                 className="h-9 px-3 w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 rounded-md text-white"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/main");
+                  navigate("/home");
                 }}
               >
                 Login

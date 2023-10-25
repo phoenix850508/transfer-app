@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 sticky">
       <div className="sidebar min-h-screen w-[3.35rem] overflow-hidden border-r border-[#f3f4f6] bg-[#e2e8f0] sm:hover:w-48 md:hover:w-56 hover:bg-white hover:shadow-lg group sticky top-0 left-0 z-10">
         <div className="w-full flex h-screen flex-col justify-between pt-2 pb-6">
           <div className="w-full relative">
@@ -30,17 +30,26 @@ function Dashboard() {
               <h2>Account Balance</h2>
             </div>
             <ul className="mt-6 space-y-2 tracking-wide flex flex-col hover:cursor-pointer">
-              <i className="fa-solid fa-house fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600">
+              <i
+                className="fa-solid fa-house fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600"
+                onClick={() => navigate("/home")}
+              >
                 <span className="group flex items-center space-x-4 rounded-md px-6 py-3 text-gray-600 hover:text-cyan-600">
                   Home
                 </span>
               </i>
-              <i className="fa-solid fa-user fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600">
+              <i
+                className="fa-solid fa-user fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600"
+                onClick={() => navigate("/setting")}
+              >
                 <span className="group flex items-center space-x-4 rounded-md px-6 py-3 text-gray-600 hover:text-cyan-600">
                   My Account
                 </span>
               </i>
-              <i className="fa-solid fa-bell fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600">
+              <i
+                className="fa-solid fa-bell fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600"
+                onClick={() => navigate("/notifications")}
+              >
                 <span className="group flex items-center space-x-4 rounded-md px-6 py-3 text-gray-600 hover:text-cyan-600">
                   Notification
                 </span>

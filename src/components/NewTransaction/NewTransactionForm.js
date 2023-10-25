@@ -1,7 +1,9 @@
 import Button from "components/buttons/Button";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function NewTransactionForm() {
+  const navigate = useNavigate();
   return (
     <form>
       <div className="form-row">
@@ -55,13 +57,19 @@ function NewTransactionForm() {
         <div className="w-full flex flex-col gap-2">
           <button
             className="bg-[#e5e7eb] text-[#0f172a] rounded-md p-2 sm:text-xs md:text-sm"
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/home");
+            }}
           >
             RETURN HOME
           </button>
           <button
             className="bg-[#e5e7eb] text-[#0f172a] rounded-md p-2 sm:text-xs md:text-sm"
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/transaction/new");
+            }}
           >
             NEW TRANSACTION
           </button>
