@@ -24,7 +24,7 @@ function Dashboard() {
               <div className="w-full flex items-center gap-2">
                 <img
                   className="h-9 w-9 cursor-pointer rounded-full object-cover object-center"
-                  src={user.photoURL ? user.photoURL : avatar}
+                  src={user?.photoURL ? user.photoURL : avatar}
                   alt=""
                 />
                 <div className="flex flex-col items-start sm:text-xs md:text-base text-left">
