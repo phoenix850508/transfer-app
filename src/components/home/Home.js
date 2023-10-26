@@ -2,10 +2,17 @@ import React from "react";
 import Dashboard from "components/dashboard/Dashboard";
 import Header from "components/header/Header";
 import TransactionCard from "./TransactionCard";
-import Menu from "./menu/Menu";
-import Calendar from "./calendar/Calendar";
+import Menu from "./Menu";
+import Calendar from "./Calendar";
 import { useState, useEffect } from "react";
 import Spinner from "components/spinner/Spinner";
+import { useNavigate } from "react-router-dom";
+import { app } from "utils/firebase";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 function Home() {
   const [isCalendarShow, setIsCalendarShow] = useState(false);
@@ -14,11 +21,28 @@ function Home() {
   };
   const [isDataExist, setIsDataExist] = useState(false);
   const dataArr = [1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 0];
+  const auth = getAuth(app);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
       setIsDataExist(true);
     }, 2000);
+  }, []);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // 若初次登入，跳轉到編輯名字ProfileInit
+        if (!user.providerData[0].displayName) {
+          navigate("/profile/inialize");
+        }
+      }
+      // 若使用者尚未登入，導回到登入頁面
+      else {
+        navigate("/login");
+      }
+    });
   }, []);
   return (
     <div className="flex relative">

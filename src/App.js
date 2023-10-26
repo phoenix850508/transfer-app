@@ -4,12 +4,13 @@ import {
   Redirect,
   Signup,
   Home,
-  Transaction,
+  NewTransaction,
   Notification,
+  MyAccount,
+  ProfileInit,
 } from "pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import MyAccount from "components/myAccount/MyAccount";
 
 function App() {
   return (
@@ -20,9 +21,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/transaction/new" element={<Transaction />} />
+          <Route path="/transaction/new" element={<NewTransaction />} />
           <Route path="/setting" element={<MyAccount />} />
           <Route path="/notifications" element={<Notification />} />
+          <Route path="/profile/inialize" element={<ProfileInit />} />
         </Routes>
       </BrowserRouter>
     </div>
