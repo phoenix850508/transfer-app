@@ -1,30 +1,47 @@
 import Button from "components/buttons/Button";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "utils/firebase";
 import FilterdUsers from "./FilterdUsers";
 import clsx from "clsx";
 
-function NewTransactionForm() {
-  const [stepper, setStepper] = useState("contact");
+function NewTransactionForm({ onContactClick, onPaymentClick, step }) {
+  const [users, setUsers] = useState([]);
+  const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
-  const handleContactClick = () => {
-    setStepper("payment");
-  };
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setUsers([]);
+      const querySnapshot = await getDocs(collection(db, "users"));
+      querySnapshot.forEach((doc) => {
+        setUsers((existingUsers) => {
+          return [...existingUsers, doc.data()];
+        });
+      });
+    };
+    fetchUsers();
+  }, []);
   return (
     <form>
-      <div className={clsx("form-row", { hidden: stepper !== "contact" })}>
+      <div className={clsx("form-row", { hidden: step !== "contact" })}>
         <input
           className="w-full border-2 p-2 mb-3"
           type="text"
           placeholder="Search..."
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
         />
-        <FilterdUsers onContactClick={handleContactClick} />
+        <FilterdUsers
+          onContactClick={onContactClick}
+          users={users}
+          keyword={keyword}
+        />
       </div>
       <div
         className={clsx("form-row flex flex-col items-center gap-3", {
-          hidden: stepper !== "payment",
+          hidden: step !== "payment",
         })}
       >
         <div className="w-full flex flex-col gap-3 items-center text-[#0000AE] font-semibold sm:text-sm md:text-xl word-break">
@@ -49,14 +66,14 @@ function NewTransactionForm() {
           <Button
             onButtonClick={(e) => {
               e.preventDefault();
-              setStepper("complete");
+              onPaymentClick();
             }}
             buttonText="REQUEST"
           />
           <Button
             onButtonClick={(e) => {
               e.preventDefault();
-              setStepper("complete");
+              onPaymentClick();
             }}
             buttonText="PAY"
           />
@@ -65,7 +82,7 @@ function NewTransactionForm() {
       <div
         className={clsx(
           "form-row flex flex-col items-center gap-7 text-[#0000AE] font-semibold sm:text-sm md:text-xl word-break py-7",
-          { hidden: stepper !== "complete" },
+          { hidden: step !== "complete" },
         )}
       >
         <div className="w-full flex flex-col gap-3 items-center">

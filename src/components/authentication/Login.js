@@ -46,6 +46,7 @@ function Login() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user);
         // 若初次登入，跳轉到編輯名字ProfileInit
         if (!user.providerData[0].displayName) {
           navigate("/profile/inialize");

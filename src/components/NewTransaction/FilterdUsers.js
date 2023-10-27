@@ -1,14 +1,14 @@
 import React from "react";
-import { users } from "./dymmyUsers";
 
-function FilterdUsers({ keyword = "", onContactClick }) {
+function FilterdUsers({ keyword = "", onContactClick, users }) {
   const filtered = users.filter((user) => {
     if (keyword.trim().length === 0) {
       return users;
     }
     return (
       user.name.toLowerCase().includes(keyword) ||
-      user.address.accountNumber.includes(keyword)
+      user.account_number.includes(keyword) ||
+      user.email.includes(keyword)
     );
   });
   return (
@@ -22,7 +22,7 @@ function FilterdUsers({ keyword = "", onContactClick }) {
           >
             <img
               className="h-12 w-12 cursor-pointer rounded-full object-cover object-center"
-              src="https://placedog.net/210"
+              src={user.photoURL}
               alt=""
             />
             <div className="flex flex-col items-start">
@@ -34,7 +34,7 @@ function FilterdUsers({ keyword = "", onContactClick }) {
                 </span>
                 <span>
                   <strong>Account:</strong>
-                  {user.address.accountNumber}
+                  {user.account_number}
                 </span>
               </div>
             </div>
