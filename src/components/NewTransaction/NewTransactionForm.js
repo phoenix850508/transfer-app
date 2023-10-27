@@ -13,12 +13,17 @@ function NewTransactionForm({ onContactClick, onPaymentClick, step }) {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      setUsers([]);
+      // 取得所有Firestore的users
       const querySnapshot = await getDocs(collection(db, "users"));
+      setUsers([]);
       querySnapshot.forEach((doc) => {
-        setUsers((existingUsers) => {
-          return [...existingUsers, doc.data()];
-        });
+        // 若users中沒有該user資料
+        const userData = doc.data();
+        if (users && !users.some((user) => user.name === userData.name)) {
+          setUsers((exustingUsers) => {
+            return [...exustingUsers, userData];
+          });
+        }
       });
     };
     fetchUsers();

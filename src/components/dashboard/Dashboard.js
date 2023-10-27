@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "icons/q_avatar.jpeg";
 import { app } from "utils/firebase";
@@ -21,21 +21,31 @@ function Dashboard() {
   const handleLogOut = async () => {
     const auth = getAuth(app);
     await signOut(auth);
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
+  // 若user存在 儲存user資料在localStorage
+  const userToString = user && JSON.stringify(user);
+  user && localStorage.setItem("user", userToString);
+
+  // 從localStorage取出資料
+  const storageUser = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     const fetchUser = async () => {
-      const userData = await getDoc(doc(db, "users", user.uid));
-      const account_number = userData.data().account_number;
-      const balance = await getDoc(
-        doc(db, "users/accounts_doc/accounts", account_number),
-      );
-      // 利用Hooks來設定Firestore中的user account balance
-      dispatch(FETCH_BALANCE(parseInt(balance.data().balance)));
+      if (user) {
+        const userData = await getDoc(doc(db, "users", user.uid));
+        const account_number = userData.data().account_number;
+        const balance = await getDoc(
+          doc(db, "users/accounts_doc/accounts", account_number),
+        );
+        // 利用Hooks來設定Firestore中的user account balance
+        dispatch(FETCH_BALANCE(parseInt(balance.data().balance)));
+      }
     };
     fetchUser().catch((error) => console.error(error));
-  }, [user.uid]);
+  }, []);
   return (
     <div className="min-h-screen bg-gray-100 sticky">
       <div className="sidebar min-h-screen w-[3.3rem] overflow-hidden border-r border-[#f3f4f6] bg-[#e2e8f0] sm:hover:w-48 md:hover:w-56 hover:bg-white hover:shadow-lg group sticky top-0 left-0 z-10">
@@ -45,15 +55,21 @@ function Dashboard() {
               <div className="w-full flex items-center gap-2">
                 <img
                   className="h-9 w-9 cursor-pointer rounded-full object-cover object-center"
-                  src={user?.photoURL ? user.photoURL : avatar}
+                  src={
+                    user
+                      ? user.photoURL
+                        ? user.photoURL
+                        : avatar
+                      : storageUser.photoURL
+                  }
                   alt=""
                 />
                 <div className="flex flex-col items-start sm:text-xs md:text-base text-left">
                   <p className="sm:w-24 md:w-40 text-gray-600 break-words">
-                    {user.displayName}
+                    {user ? user.displayName : storageUser.displayName}
                   </p>
                   <p className="sm:w-24 md:w-40 text-gray-600 break-words">
-                    {user.email}
+                    {user ? user.email : storageUser.email}
                   </p>
                 </div>
               </div>
