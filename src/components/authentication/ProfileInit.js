@@ -25,18 +25,19 @@ function ProfileInit() {
     // 排除錯誤
     if (firstName.trim() === 0 || lastName.trim().length === 0) return;
 
-    // 將使用者個人資料加入FireStore
-    await setDoc(doc(db, "users", `${user.uid}`), {
-      name: firstName + " " + lastName,
-      photoURL: photoDefault,
-      email: user.email,
-    });
-
     // 幫使用者產生account_number，並加入到Firestore
     const account_number = accountNumberGenerator();
     await setDoc(doc(db, `users/accounts_doc/accounts/${account_number}`), {
       userId: user.uid,
       balance: 0,
+    });
+
+    // 將使用者個人資料加入FireStore
+    await setDoc(doc(db, "users", `${user.uid}`), {
+      name: firstName + " " + lastName,
+      photoURL: photoDefault,
+      email: user.email,
+      account_number,
     });
 
     // 更新Auth中profile資料
@@ -120,8 +121,8 @@ function accountNumberGenerator() {
   let account_number = "";
   const digits = 13;
   for (let i = 0; i < digits; i++) {
-    const randIndex = Math.floor(Math.random() * 10);
-    account_number += numbers[randIndex];
+    const randIndex = Math.floor(Math.random() * numLength);
+    account_number += numbers[randIndex].toString();
   }
   return account_number;
 }
