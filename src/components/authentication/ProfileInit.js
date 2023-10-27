@@ -1,26 +1,47 @@
 import { getAuth, updateProfile, signOut } from "firebase/auth";
-import { app } from "utils/firebase";
+import { app, db } from "utils/firebase";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ToastInfo from "./toasts/ToastInfo";
 import ToastSuccess from "./toasts/ToastSuccess";
+import { doc, setDoc } from "firebase/firestore";
 
 function ProfileInit() {
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  // 取出既有使用者資料
   const auth = getAuth(app);
   const user = auth.currentUser;
-  const navigate = useNavigate();
-  const handleContinueClick = (e) => {
+
+  // 點擊Continue按鈕，儲存使用者資訊到Auth和Cloud Firestore
+  const handleContinueClick = async (e) => {
     e.preventDefault();
     const firstName = firstNameRef.current.value;
     const lastName = lastNameRef.current.value;
-    const randNum = Math.floor(Math.random() * 900) + 100;
-    const photoDefault = `https://i.pravatar.cc/${randNum}`;
+    const photoDefault = "https://i.pravatar.cc/200";
     // 排除錯誤
     if (firstName.trim() === 0 || lastName.trim().length === 0) return;
+
+    // 將使用者個人資料加入FireStore
+    await setDoc(doc(db, "users", `${user.uid}`), {
+      name: firstName + " " + lastName,
+      photoURL: photoDefault,
+      email: user.email,
+    });
+
+    // 幫使用者產生account_number，並加入到Firestore
+    const account_number = accountNumberGenerator();
+    await setDoc(doc(db, `users/accounts_doc/accounts/${account_number}`), {
+      userId: user.uid,
+      balance: 0,
+    });
+
+    // 更新Auth中profile資料
     updateProfile(auth.currentUser, {
-      displayName: lastName + " " + firstName,
+      displayName: firstName + " " + lastName,
       photoURL: photoDefault,
     })
       .then(() => {
@@ -91,6 +112,18 @@ function ProfileInit() {
       </form>
     </div>
   );
+}
+
+function accountNumberGenerator() {
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  const numLength = numbers.length;
+  let account_number = "";
+  const digits = 13;
+  for (let i = 0; i < digits; i++) {
+    const randIndex = Math.floor(Math.random() * 10);
+    account_number += numbers[randIndex];
+  }
+  return account_number;
 }
 
 export default ProfileInit;

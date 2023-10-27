@@ -39,7 +39,6 @@ function Signup() {
       passwordRef.current.value,
     )
       .then((userCredential) => {
-        console.log(userCredential.user);
         navigate("/login");
       })
       .catch((error) => {

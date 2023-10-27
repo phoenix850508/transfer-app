@@ -1,6 +1,8 @@
 import Button from "components/buttons/Button";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "utils/firebase";
 import FilterdUsers from "./FilterdUsers";
 import clsx from "clsx";
 
