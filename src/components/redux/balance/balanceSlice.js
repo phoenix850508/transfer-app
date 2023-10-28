@@ -1,4 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { app, db } from "utils/firebase";
+import { getAuth } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+
+const auth = getAuth(app);
+const user = auth.currentUser;
 
 const balanceSlice = createSlice({
   name: "balance",

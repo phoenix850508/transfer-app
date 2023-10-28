@@ -1,5 +1,5 @@
 import React from "react";
-import rawLogoWhite from "icons/rwa-logo-white.svg";
+import rawLogoWhite from "icons/transfer-logo-white.svg";
 import { useNavigate } from "react-router-dom";
 import Button from "components/buttons/Button";
 
@@ -13,7 +13,7 @@ function Header() {
       <div className=""></div>
       <div className="flex items-center">
         <img
-          className="absolute left-1/2 -translate-x-1/2 sm:w-40 md:w-64"
+          className="absolute left-1/2 sm:-translate-x-1/2 md:-translate-x-2/3 sm:w-40 md:w-64"
           src={rawLogoWhite}
           alt=""
         ></img>

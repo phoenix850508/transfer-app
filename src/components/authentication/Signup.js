@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import rwaLogo from "icons/rwa-logo.svg";
+import rwaLogo from "icons/transfer-logo.svg";
 import { app } from "utils/firebase";
 import {
   getAuth,

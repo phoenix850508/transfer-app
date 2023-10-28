@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import rwaLogo from "icons/rwa-logo.svg";
+import rwaLogo from "icons/transfer-logo.svg";
 import { app } from "utils/firebase";
 import {
   getAuth,
@@ -46,7 +46,6 @@ function Login() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         // 若初次登入，跳轉到編輯名字ProfileInit
         if (!user.providerData[0].displayName) {
           navigate("/profile/inialize");

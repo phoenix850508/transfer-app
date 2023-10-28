@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "icons/q_avatar.jpeg";
-import { app } from "utils/firebase";
+import { app, db } from "utils/firebase";
 import { signOut, getAuth } from "firebase/auth";
-import { db } from "utils/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_BALANCE } from "components/redux/balance/balanceSlice";

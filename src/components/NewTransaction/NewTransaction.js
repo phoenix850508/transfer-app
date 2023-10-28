@@ -11,6 +11,10 @@ function NewTransaction() {
   const handlePaymentClick = () => {
     setStep("complete");
   };
+  const handleNewTransaction = (e) => {
+    e.preventDefault();
+    setStep("contact");
+  };
   return (
     <NavbarContainer>
       <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden max-w-5xl mt-10 m-5 sm:p-2 md:p-5 flex flex-col gap-10">
@@ -18,6 +22,7 @@ function NewTransaction() {
         <TransactionForm
           onContactClick={handleContactClick}
           onPaymentClick={handlePaymentClick}
+          onNewTransactionClick={handleNewTransaction}
           step={step}
         />
       </div>

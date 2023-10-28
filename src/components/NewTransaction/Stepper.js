@@ -2,7 +2,6 @@ import React from "react";
 import clsx from "clsx";
 
 function Stepper({ step }) {
-  console.log(step);
   return (
     <div className="flex items-center justify-between sm:text-xs md:text-base text-gray-600">
       <div className="flex items-center">

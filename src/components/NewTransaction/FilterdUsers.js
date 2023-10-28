@@ -1,14 +1,19 @@
 import React from "react";
 
-function FilterdUsers({ keyword = "", onContactClick, users }) {
+function FilterdUsers({
+  keyword = "",
+  onContactClick,
+  users,
+  currentUserEmail,
+}) {
   const filtered = users.filter((user) => {
     if (keyword.trim().length === 0) {
-      return users;
+      return user.email !== currentUserEmail;
     }
     return (
       user.name.toLowerCase().includes(keyword) ||
       user.account_number.includes(keyword) ||
-      user.email.includes(keyword)
+      (user.email.includes(keyword) && user.email !== currentUserEmail)
     );
   });
   return (
@@ -18,7 +23,7 @@ function FilterdUsers({ keyword = "", onContactClick, users }) {
           <div
             className="flex flex py-5 sm:gap-2 md:gap-6 hover:bg-[#f3f4f6] cursor-pointer"
             key={index}
-            onClick={onContactClick}
+            onClick={() => onContactClick?.(user)}
           >
             <img
               className="h-12 w-12 cursor-pointer rounded-full object-cover object-center"
