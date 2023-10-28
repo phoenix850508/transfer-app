@@ -2,7 +2,7 @@ import Button from "components/buttons/Button";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "utils/firebase";
 import FilterdUsers from "./FilterdUsers";
 import clsx from "clsx";
@@ -40,7 +40,7 @@ function NewTransactionForm({
     setSelectedUser(user);
   };
 
-  const handlePaymentClick = async (e, btnText) => {
+  const handlePaymentClick = (e, btnText) => {
     e.preventDefault();
     const amount = amountRef.current.value;
     const note = noteRef.current.value;
@@ -68,20 +68,21 @@ function NewTransactionForm({
       }
       // 改變fireStore payer和payee資料
       // payer 付款人
-      await updateDoc(doc(db, `users/accounts_doc/accounts/${userAccount}`), {
-        balance: increment(-parseInt(amount)),
-      });
+      userBalanceDecrement(userAccount, amount);
 
       // payee 取款人
-      await updateDoc(
-        doc(db, `users/accounts_doc/accounts/${selectedUser.account_number}`),
-        {
-          balance: increment(parseInt(amount)),
-        },
-      );
+      userBalabceIncrement(selectedUser.account_number, amount);
 
       // 改變client-side資料 即時顯示正確的balance
       dispatch(BALANCE_DECREMENT(amount));
+
+      // 通知使用者已發出付款
+      sendNotification(user, selectedUser, btnText, amount, note);
+    }
+
+    if (btnText === "request") {
+      // 對使用者發出request
+      sendNotification(user, selectedUser, btnText, amount, note);
     }
     onPaymentClick();
   };
@@ -226,6 +227,28 @@ function NewTransactionForm({
       </div>
     </form>
   );
+}
+
+export async function userBalanceDecrement(user_account, amount) {
+  await updateDoc(doc(db, `users/accounts_doc/accounts/${user_account}`), {
+    balance: increment(-parseInt(amount)),
+  });
+}
+
+export async function userBalabceIncrement(user_account, amount) {
+  await updateDoc(doc(db, `users/accounts_doc/accounts/${user_account}`), {
+    balance: increment(parseInt(amount)),
+  });
+}
+
+export async function sendNotification(sender, recipient, type, amount, note) {
+  await addDoc(collection(db, "users/notifications_doc/notifications"), {
+    sender,
+    recipient,
+    type,
+    amount: parseInt(amount),
+    note,
+  });
 }
 
 export default NewTransactionForm;

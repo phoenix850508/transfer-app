@@ -34,6 +34,7 @@ function ProfileInit() {
 
     // 將使用者個人資料加入FireStore
     await setDoc(doc(db, "users", `${user.uid}`), {
+      userId: user.uid,
       name: firstName + " " + lastName,
       photoURL: photoDefault,
       email: user.email,

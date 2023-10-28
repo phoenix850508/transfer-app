@@ -22,7 +22,7 @@ function Home() {
   useEffect(() => {
     setTimeout(() => {
       setIsDataExist(true);
-    }, 2000);
+    }, 700);
   }, []);
 
   useEffect(() => {
