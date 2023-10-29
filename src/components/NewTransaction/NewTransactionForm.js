@@ -226,7 +226,7 @@ function NewTransactionForm({
         <div className="w-full flex flex-col gap-3 items-center">
           <img
             className="h-12 w-12 cursor-pointer rounded-full object-cover object-center"
-            src="https://placedog.net/210"
+            src={selectedUser && selectedUser.photoURL}
             alt=""
           />
           <span>{selectedUser && selectedUser.name}</span>
