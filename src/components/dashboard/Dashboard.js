@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import avatar from "icons/q_avatar.jpeg";
+import avatar from "icons/default_avatar.jpeg";
 import { app, db } from "utils/firebase";
 import { signOut, getAuth } from "firebase/auth";
 import {
@@ -10,7 +10,6 @@ import {
   query,
   getDocs,
   where,
-  count,
 } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_BALANCE } from "components/redux/balance/balanceSlice";

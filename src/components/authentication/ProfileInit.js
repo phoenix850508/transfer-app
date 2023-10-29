@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ToastInfo from "./toasts/ToastInfo";
 import ToastSuccess from "./toasts/ToastSuccess";
 import { doc, setDoc } from "firebase/firestore";
+import avatar_default from "icons/default_avatar.jpeg";
 
 function ProfileInit() {
   const firstNameRef = useRef(null);
@@ -21,7 +22,7 @@ function ProfileInit() {
     e.preventDefault();
     const firstName = firstNameRef.current.value;
     const lastName = lastNameRef.current.value;
-    const photoDefault = "https://i.pravatar.cc/200";
+    const photoDefault = avatar_default;
     // 排除錯誤
     if (firstName.trim() === 0 || lastName.trim().length === 0) return;
 
