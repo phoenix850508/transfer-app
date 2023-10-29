@@ -63,7 +63,7 @@ function NewTransactionForm({
       setIsAlertShow(true);
       seterrorMsg("amount needs to be an integer");
       return;
-    } else if (Number.isInteger(parseInt(amount))) {
+    } else if (!Number.isInteger(parseInt(amount))) {
       setIsAlertShow(true);
       seterrorMsg("amount needs to be an integer");
       return;

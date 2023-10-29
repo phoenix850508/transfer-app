@@ -48,11 +48,11 @@ function Home() {
           month: 11,
         });
       } else {
-        setSelectedDate({ ...selectedDate, month: selectedDate.month - 1 });
+        setSelectedDate({ ...selectedDate, month: selectedDate.month - 1 + 1 });
         // 改變按鈕Text
-        dateTextRef.current = `${selectedDate.year}/${selectedDate.month - 1}/${
-          selectedDate.date
-        }`;
+        dateTextRef.current = `${selectedDate.year}/${
+          selectedDate.month - 1 + 1
+        }/${selectedDate.date}`;
       }
     } else if (type === "nextMonth") {
       // 調整當月份為12月時，重新往1月計算
@@ -63,22 +63,27 @@ function Home() {
           month: 0,
         });
         // 改變按鈕Text
-        dateTextRef.current = `${selectedDate.year + 1}/1/${selectedDate.date}`;
+        dateTextRef.current = `${selectedDate.year + 1 + 1}/1/${
+          selectedDate.date
+        }`;
       } else {
         setSelectedDate({ ...selectedDate, month: selectedDate.month + 1 });
         // 改變按鈕Text
-        dateTextRef.current = `${selectedDate.year}/${selectedDate.month + 1}/${
-          selectedDate.date
-        }`;
+        dateTextRef.current = `${selectedDate.year}/${
+          selectedDate.month + 1 + 1
+        }/${selectedDate.date}`;
       }
     } else if (type === "changeDate") {
       setSelectedDate({ ...selectedDate, date });
       setIsCalendarShow(false);
       // 改變按鈕Text
-      dateTextRef.current = `${selectedDate.year}/${selectedDate.month}/${date}`;
+      dateTextRef.current = `${selectedDate.year}/${
+        selectedDate.month + 1
+      }/${date}`;
     }
   };
 
+  // 重新設定calendar顯示transaction的日期
   const handleResetClick = () => {
     setSelectedDate({
       year: currDate.getFullYear(),
@@ -89,8 +94,31 @@ function Home() {
     setIsCalendarShow(false);
   };
 
+  // 整理timestamp時間，以及filter符合選擇日期的transactions
   const transactionsSorted =
-    transactions && transactions.sort((a, b) => b.timestamp - a.timestamp);
+    transactions &&
+    transactions
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .filter((trans) => {
+        if (dateTextRef.current === "ALL") return true;
+        const constructDate = Date.parse(
+          new Date(
+            selectedDate.year,
+            selectedDate.month,
+            selectedDate.date,
+          ).toString(),
+        );
+
+        let isMatch = true;
+        const transactionTimeArr = new Date(trans.timestamp.seconds * 1000)
+          .toString()
+          .split(" ");
+        const selctedTimeArr = new Date(constructDate).toString().split(" ");
+        for (let i = 0; i < 3; i++) {
+          if (transactionTimeArr[i] !== selctedTimeArr[i]) isMatch = false;
+        }
+        return isMatch;
+      });
 
   useEffect(() => {
     // 找出所有Transaction紀錄
