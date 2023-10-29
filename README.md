@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Transfer-App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💰 Introduction
+This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance 
+and the public transaction timeline.
 
-## Available Scripts
+This app is built to pay attribute to an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
+The original idea was to add React testing while building this app, so it inherits the ideas of the original application. Though due to the time constrains,
+testings takes up too much time, so the primary goal is to strengthen the knowledge of Redux, Firebase, and TailwindCSS by building this project.
 
-In the project directory, you can run:
+## Features
+- User can signup to join this world of payment application
+- User can use the login page to login
+- User can send a request or pay to selected users available in this application
+- The account balance in the dashboard will be udpated in both client-side and backend
+- Users will be notified when other users sends request or pays
+- Notifications popped up when other users send a payment request
+- User can decide whether accept or decline the request
 
-### `npm start`
+## 🔧 Specs
+- Node 15.9.0,
+- reduxjs/toolkit 1.9.7,
+- clsx 2.0.0,
+- firebase 10.5.0,
+- react 18.2.0,
+- react-redux 8.1.3,
+- redux 4.2.1,
+- - tailwindcss 3.3.3,
+- javascript-time-ago 2.5.9,
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
