@@ -10,6 +10,7 @@
 
 This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance 
 and the public transaction timeline.
+You are more than welcome to try transfer and request in this app: https://phoenix850508.github.io/transfer-app/
 
 The app is built to pay attribute to an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
 The original idea was to add React testing while building this app, so it inherits the ideas from the application that I pay attribute to. Though due to the time constrains,
