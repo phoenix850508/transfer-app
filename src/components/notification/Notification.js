@@ -4,7 +4,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "utils/firebase";
 import Spinner from "components/spinner/Spinner";
 import NotificationCard from "./NotificationCard";
-import MessageCards from "./MessageCards";
+import messageLogo from "icons/undraw_reminders_697p.svg";
 
 function Notification() {
   const [isDataExist, setIsDataExist] = useState(false);
@@ -45,7 +45,7 @@ function Notification() {
     <NavbarContainer>
       <div className="mx-auto bg-white rounded-xl shadow-md overflow-hidden max-w-2xl mt-10 m-5 sm:p-2 md:p-5 flex flex-col gap-10">
         <h1 className="text-[#0000AE] text-start">
-          {notifications ? "Notifications" : "No notifications"}
+          {notifications.length ? "Notifications" : "No notifications"}
         </h1>
         <div className="border-2 p-3 border-[#e5e7eb]">
           {isDataExist ? (
@@ -62,6 +62,7 @@ function Notification() {
                   amount={noti.amount}
                   note={noti.note}
                   pendingStatus={noti.pendingStatus}
+                  timestamp={noti.timestamp}
                 />
               );
             })
@@ -70,7 +71,7 @@ function Notification() {
               <Spinner />
             </div>
           )}
-          <MessageCards />
+          <img src={messageLogo} alt="" />
         </div>
       </div>
     </NavbarContainer>

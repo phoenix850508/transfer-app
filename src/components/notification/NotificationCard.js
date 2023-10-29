@@ -19,12 +19,14 @@ function NotificationCard({
   amount,
   note,
   pendingStatus,
+  timestamp,
 }) {
   const [isCanceled, setIsCanceled] = useState(false);
   const [isButtonClick, setIsButtonClick] = useState(false);
   const [status, setStatus] = useState(pendingStatus);
   const notificationRef = doc(db, "users/notifications_doc/notifications", id);
   const dispatch = useDispatch();
+  const date = timestamp.toDate().toString();
 
   // 若點擊request的Pay按鈕
   const handlePayClick = async (e) => {
@@ -60,11 +62,10 @@ function NotificationCard({
 
   useEffect(() => {
     // 若此request已經解決，cross out字樣並隱藏按鈕
-    if (
-      (status === "done" || status === "rejected") &&
-      eventType === "request"
-    ) {
+    if (status === "rejected" && eventType === "request") {
       setIsCanceled(true);
+      setIsButtonClick(true);
+    } else if (status === "done" && eventType === "request") {
       setIsButtonClick(true);
     }
   }, [eventType, status]);
@@ -98,6 +99,7 @@ function NotificationCard({
           </p>
           <p className="mt-2 text-gray-500">Note: {note}</p>
           <p className="mt-2 text-gray-500">Status: {status}</p>
+          <p className="mt-2 text-gray-500">{date}</p>
         </div>
         <div
           className={clsx(
