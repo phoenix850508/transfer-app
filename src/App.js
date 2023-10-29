@@ -15,10 +15,11 @@ import { Provider } from "react-redux";
 import store from "components/redux/store";
 
 function App() {
+  const basename = process.env.PUBLIC_URL;
   return (
     <div className="App">
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <Routes>
             <Route path="*" element={<Redirect />} />
             <Route path="/login" element={<Login />} />
