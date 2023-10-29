@@ -10,7 +10,7 @@
 This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance 
 and the public transaction timeline.
 
-This app is built to pay attribute to an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
+The app is built to pay attribute to an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
 The original idea was to add React testing while building this app, so it inherits the ideas of the original application. Though due to the time constrains,
 testings takes up too much time, so the primary goal is to strengthen the knowledge of Redux, Firebase, and TailwindCSS by building this project.
 
