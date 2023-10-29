@@ -1,12 +1,11 @@
 # Transfer-App
 
 ## 💰 Introduction
-<img width="700" alt="截圖 2023-10-29 下午9 06 07" src="https://github.com/phoenix850508/transfer-app/assets/121414639/f0f7f247-22d6-4d57-abcc-c418e12aabd9">
-<img width="700" alt="截圖 2023-10-29 下午9 27 06" src="https://github.com/phoenix850508/transfer-app/assets/121414639/d979b752-30e3-455a-8aa2-d1a8fc8eff56">
-<img width="700" alt="截圖 2023-10-29 下午9 05 22" src="https://github.com/phoenix850508/transfer-app/assets/121414639/75243ad6-e1e0-4770-ae82-002d2f80f4b3">
-<img width="700" alt="截圖 2023-10-29 下午9 05 32" src="https://github.com/phoenix850508/transfer-app/assets/121414639/17961b41-954c-498e-b944-77d0c13af86f">
-<img width="700" alt="截圖 2023-10-29 下午9 11 23" src="https://github.com/phoenix850508/transfer-app/assets/121414639/dc72831c-bc69-41e4-81e5-84421ed25d84">
-
+<img width="1000" alt="截圖 2023-10-30 上午12 13 21" src="https://github.com/phoenix850508/transfer-app/assets/121414639/ea1d0b7e-6c36-412a-9440-bd7c36337673">
+<img width="1000" alt="截圖 2023-10-30 上午12 13 45" src="https://github.com/phoenix850508/transfer-app/assets/121414639/096867a9-5252-4296-b4d6-cd401381a8b3">
+<img width="1000" alt="截圖 2023-10-30 上午12 13 57" src="https://github.com/phoenix850508/transfer-app/assets/121414639/a214433f-e125-4f8e-ae75-9bc6a6deb25e">
+<img width="1000" alt="截圖 2023-10-30 上午12 14 12" src="https://github.com/phoenix850508/transfer-app/assets/121414639/c640524f-bf13-46a5-baab-8eb83a7a06a1">
+<img width="1000" alt="截圖 2023-10-30 上午12 17 13" src="https://github.com/phoenix850508/transfer-app/assets/121414639/110e6844-166f-433d-a4c3-bef2927bb921">
 
 This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance 
 and the public transaction timeline.
@@ -22,7 +21,8 @@ testings takes up too much time, so the primary goal is to strengthen the knowle
 - User can view a specific date's public transactions
 - User can send a request or pay to selected users available in this application
 - The account balance in the dashboard will be udpated in both client-side and backend if actions were taken
-- Users will be notified when other users sends request or pays
+- User can edit thir own profile pictures and username
+- User will be notified when other users sends request or pays
 - Notifications are popped up when other users send a payment request
 - User can decide whether to accept or decline the request
 - RWD application
