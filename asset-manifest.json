@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.91a8adee.css",
-    "main.js": "/static/js/main.bd6eb47c.js",
-    "static/js/787.f0313c20.chunk.js": "/static/js/787.f0313c20.chunk.js",
-    "static/media/q_avatar.jpeg": "/static/media/q_avatar.32a18556001cc664b591.jpeg",
-    "static/media/undraw_personal_settings_kihd.svg": "/static/media/undraw_personal_settings_kihd.2421c5f8a8011d31cc962d6c6fc5b036.svg",
-    "static/media/undraw_transfer_money_rywa.svg": "/static/media/undraw_transfer_money_rywa.a23d7c124c9ef6b4fec71b193b01c57f.svg",
-    "static/media/transfer-logo-white.svg": "/static/media/transfer-logo-white.2de6497cb2112997ac8c3786edee8f51.svg",
-    "static/media/transfer-logo.svg": "/static/media/transfer-logo.74fe445916b455477de457d3d0b64e7f.svg",
-    "static/media/undraw_reminders_697p.svg": "/static/media/undraw_reminders_697p.3ca986ae36ebcd42e4683e36234dc011.svg",
-    "index.html": "/index.html",
-    "main.91a8adee.css.map": "/static/css/main.91a8adee.css.map",
-    "main.bd6eb47c.js.map": "/static/js/main.bd6eb47c.js.map",
-    "787.f0313c20.chunk.js.map": "/static/js/787.f0313c20.chunk.js.map"
+    "main.css": "/transfer-app/static/css/main.91a8adee.css",
+    "main.js": "/transfer-app/static/js/main.fbc267cf.js",
+    "static/js/787.f0313c20.chunk.js": "/transfer-app/static/js/787.f0313c20.chunk.js",
+    "static/media/q_avatar.jpeg": "/transfer-app/static/media/q_avatar.32a18556001cc664b591.jpeg",
+    "static/media/undraw_personal_settings_kihd.svg": "/transfer-app/static/media/undraw_personal_settings_kihd.2421c5f8a8011d31cc962d6c6fc5b036.svg",
+    "static/media/undraw_transfer_money_rywa.svg": "/transfer-app/static/media/undraw_transfer_money_rywa.a23d7c124c9ef6b4fec71b193b01c57f.svg",
+    "static/media/transfer-logo-white.svg": "/transfer-app/static/media/transfer-logo-white.2de6497cb2112997ac8c3786edee8f51.svg",
+    "static/media/transfer-logo.svg": "/transfer-app/static/media/transfer-logo.74fe445916b455477de457d3d0b64e7f.svg",
+    "static/media/undraw_reminders_697p.svg": "/transfer-app/static/media/undraw_reminders_697p.3ca986ae36ebcd42e4683e36234dc011.svg",
+    "index.html": "/transfer-app/index.html",
+    "main.91a8adee.css.map": "/transfer-app/static/css/main.91a8adee.css.map",
+    "main.fbc267cf.js.map": "/transfer-app/static/js/main.fbc267cf.js.map",
+    "787.f0313c20.chunk.js.map": "/transfer-app/static/js/787.f0313c20.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.91a8adee.css",
-    "static/js/main.bd6eb47c.js"
+    "static/js/main.fbc267cf.js"
   ]
 }
