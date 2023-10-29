@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/transfer-app/static/css/main.91a8adee.css",
-    "main.js": "/transfer-app/static/js/main.fbc267cf.js",
-    "static/js/787.f0313c20.chunk.js": "/transfer-app/static/js/787.f0313c20.chunk.js",
+    "main.js": "/transfer-app/static/js/main.68d7aed9.js",
+    "static/js/787.23d207a2.chunk.js": "/transfer-app/static/js/787.23d207a2.chunk.js",
     "static/media/q_avatar.jpeg": "/transfer-app/static/media/q_avatar.32a18556001cc664b591.jpeg",
     "static/media/undraw_personal_settings_kihd.svg": "/transfer-app/static/media/undraw_personal_settings_kihd.2421c5f8a8011d31cc962d6c6fc5b036.svg",
     "static/media/undraw_transfer_money_rywa.svg": "/transfer-app/static/media/undraw_transfer_money_rywa.a23d7c124c9ef6b4fec71b193b01c57f.svg",
@@ -11,11 +11,11 @@
     "static/media/undraw_reminders_697p.svg": "/transfer-app/static/media/undraw_reminders_697p.3ca986ae36ebcd42e4683e36234dc011.svg",
     "index.html": "/transfer-app/index.html",
     "main.91a8adee.css.map": "/transfer-app/static/css/main.91a8adee.css.map",
-    "main.fbc267cf.js.map": "/transfer-app/static/js/main.fbc267cf.js.map",
-    "787.f0313c20.chunk.js.map": "/transfer-app/static/js/787.f0313c20.chunk.js.map"
+    "main.68d7aed9.js.map": "/transfer-app/static/js/main.68d7aed9.js.map",
+    "787.23d207a2.chunk.js.map": "/transfer-app/static/js/787.23d207a2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.91a8adee.css",
-    "static/js/main.fbc267cf.js"
+    "static/js/main.68d7aed9.js"
   ]
 }
