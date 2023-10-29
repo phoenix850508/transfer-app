@@ -47,9 +47,7 @@ function TransactionCard({
             {eventType === "pay" ? "paid" : "requested"}{" "}
             <span className="text-indigo-500">{recipient.name}</span>
           </div>
-          <p className="mt-2 text-gray-500">
-            {eventType === "pay" ? "PaidId" : "RequestId"}: {id}
-          </p>
+          <p className="mt-2 text-gray-500">TransactionId: {id}</p>
           <p className="mt-2 text-gray-500">Note: {note}</p>
           <p className="mt-2 text-gray-500">Status: {pendingStatus}</p>
           <p className="mt-2 text-gray-500">{date}</p>

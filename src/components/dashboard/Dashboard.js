@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import avatar from "icons/q_avatar.jpeg";
 import { app, db } from "utils/firebase";
 import { signOut, getAuth } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  collection,
+  query,
+  getDocs,
+  where,
+  count,
+} from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_BALANCE } from "components/redux/balance/balanceSlice";
+import clsx from "clsx";
 
 function Dashboard() {
   const auth = getAuth(app);
   const user = auth.currentUser;
+  const [countPending, setCountPending] = useState(0);
 
   // 利用Hooks顯示redux state
   const balanceValue = useSelector((state) => state.balance.value);
@@ -44,7 +54,21 @@ function Dashboard() {
         dispatch(FETCH_BALANCE(parseInt(balance.data().balance)));
       }
     };
+    const fetchPendingCount = async () => {
+      const q = query(
+        collection(db, "users/notifications_doc/notifications"),
+        where("pendingStatus", "==", "pending"),
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const docData = doc.data();
+        if (docData.recipient.userId === user.uid) {
+          setCountPending(countPending + 1);
+        }
+      });
+    };
     fetchUser().catch((error) => console.error(error));
+    fetchPendingCount().catch((error) => console.error(error));
   }, [user]);
   return (
     <div className="min-h-screen bg-gray-100 sticky">
@@ -96,12 +120,21 @@ function Dashboard() {
                 </span>
               </i>
               <i
-                className="fa-solid fa-bell fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max  hover:text-cyan-600"
+                className="fa-solid fa-bell fa-sm group flex items-center space-x-4 rounded-md px-4 py-3 text-gray-600 min-w-max hover:text-cyan-600 relative"
                 onClick={() => navigate("/notifications")}
               >
                 <span className="group flex items-center space-x-4 rounded-md px-6 py-3 text-gray-600 hover:text-cyan-600">
                   Notification
                 </span>
+                <div
+                  className={clsx(
+                    "absolute",
+                    { hidden: !countPending },
+                    { block: countPending },
+                  )}
+                >
+                  <p className="flex h-px w-px items-center justify-center rounded-full bg-red-500 p-1 text-xs text-white"></p>
+                </div>
               </i>
             </ul>
           </div>

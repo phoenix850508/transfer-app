@@ -47,12 +47,12 @@ function Home() {
           year: selectedDate.year - 1,
           month: 11,
         });
-      } else {
-        setSelectedDate({ ...selectedDate, month: selectedDate.month - 1 + 1 });
         // 改變按鈕Text
-        dateTextRef.current = `${selectedDate.year}/${
-          selectedDate.month - 1 + 1
-        }/${selectedDate.date}`;
+        dateTextRef.current = `${selectedDate.year}/${selectedDate.month}/${selectedDate.date}`;
+      } else {
+        setSelectedDate({ ...selectedDate, month: selectedDate.month - 1 });
+        // 改變按鈕Text
+        dateTextRef.current = `${selectedDate.year}/${selectedDate.month}/${selectedDate.date}`;
       }
     } else if (type === "nextMonth") {
       // 調整當月份為12月時，重新往1月計算
@@ -63,15 +63,13 @@ function Home() {
           month: 0,
         });
         // 改變按鈕Text
-        dateTextRef.current = `${selectedDate.year + 1 + 1}/1/${
-          selectedDate.date
-        }`;
+        dateTextRef.current = `${selectedDate.year + 1}/1/${selectedDate.date}`;
       } else {
         setSelectedDate({ ...selectedDate, month: selectedDate.month + 1 });
         // 改變按鈕Text
-        dateTextRef.current = `${selectedDate.year}/${
-          selectedDate.month + 1 + 1
-        }/${selectedDate.date}`;
+        dateTextRef.current = `${selectedDate.year}/${selectedDate.month + 2}/${
+          selectedDate.date
+        }`;
       }
     } else if (type === "changeDate") {
       setSelectedDate({ ...selectedDate, date });
@@ -81,6 +79,7 @@ function Home() {
         selectedDate.month + 1
       }/${date}`;
     }
+    console.log(dateTextRef.current);
   };
 
   // 重新設定calendar顯示transaction的日期
