@@ -57,8 +57,19 @@ function NewTransactionForm({
       seterrorMsg("amount or note field cannot be empty");
       return;
     }
-    // amount不可為負數
+
+    // amount不可為string或小數點
+    if (isNaN(parseInt(amount))) {
+      setIsAlertShow(true);
+      seterrorMsg("amount needs to be an integer");
+      return;
+    } else if (Number.isInteger(parseInt(amount))) {
+      setIsAlertShow(true);
+      seterrorMsg("amount needs to be an integer");
+      return;
+    }
     if (parseInt(amount) <= 0) {
+      // amount不可為負數
       setIsAlertShow(true);
       seterrorMsg("amount cannot be lower or equals to 0");
       return;
@@ -226,7 +237,7 @@ function NewTransactionForm({
         </p>
         <div className="w-full flex flex-col gap-2">
           <button
-            className="bg-[#e5e7eb] text-[#0f172a] rounded-md p-2 sm:text-xs md:text-sm"
+            className="bg-gray-300 text-[#0f172a] rounded-md p-2 sm:text-xs md:text-sm hover:bg-gray-400"
             onClick={(e) => {
               e.preventDefault();
               navigate("/home");
@@ -235,7 +246,7 @@ function NewTransactionForm({
             RETURN HOME
           </button>
           <button
-            className="bg-[#e5e7eb] text-[#0f172a] rounded-md p-2 sm:text-xs md:text-sm"
+            className="bg-gray-300 text-[#0f172a] rounded-md p-2 sm:text-xs md:text-sm hover:bg-gray-400"
             onClick={(e) => {
               onNewTransactionClick?.(e);
               amountRef.current.value = "";

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 
 function TransactionCard({
   id,
@@ -14,7 +13,6 @@ function TransactionCard({
   timestamp,
 }) {
   const [isCanceled, setIsCanceled] = useState(false);
-  TimeAgo.addDefaultLocale(en);
   const timeAgo = new TimeAgo("en-CH");
   const date = timeAgo.format(
     Date.now() - (Date.now() - timestamp.seconds * 1000),

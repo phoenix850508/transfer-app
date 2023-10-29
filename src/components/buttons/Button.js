@@ -6,8 +6,8 @@ function Button({ onButtonClick, buttonText, action = "confirm" }) {
     <button
       className={clsx(
         "text-[white] rounded-md sm:p-1 md:p-2 md:text-lg",
-        { "bg-[#22c55e]": action === "confirm" },
-        { "bg-red-500": action === "cancel" },
+        { "bg-green-500 hover:bg-green-600": action === "confirm" },
+        { "bg-red-500 hover:bg-red-600": action === "cancel" },
       )}
       onClick={onButtonClick}
     >
