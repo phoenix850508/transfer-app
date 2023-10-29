@@ -24,13 +24,14 @@ function Dashboard() {
     navigate("/login");
   };
 
-  // 若user存在 儲存user資料在localStorage
+  // 儲存user資料在localStorage
   const userToString = user && JSON.stringify(user);
   user && localStorage.setItem("user", userToString);
 
   // 從localStorage取出資料
   const storageUser = JSON.parse(localStorage.getItem("user"));
 
+  // 從fireStore取得user
   useEffect(() => {
     const fetchUser = async () => {
       if (user) {
@@ -44,7 +45,7 @@ function Dashboard() {
       }
     };
     fetchUser().catch((error) => console.error(error));
-  }, []);
+  }, [user]);
   return (
     <div className="min-h-screen bg-gray-100 sticky">
       <div className="sidebar min-h-screen w-[3.3rem] overflow-hidden border-r border-[#f3f4f6] bg-[#e2e8f0] sm:hover:w-48 md:hover:w-56 hover:bg-white hover:shadow-lg group sticky top-0 left-0 z-10">

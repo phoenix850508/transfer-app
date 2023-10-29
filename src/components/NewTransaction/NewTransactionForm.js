@@ -2,7 +2,12 @@ import Button from "components/buttons/Button";
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "utils/firebase";
 import FilterdUsers from "./FilterdUsers";
 import clsx from "clsx";
@@ -77,12 +82,28 @@ function NewTransactionForm({
       dispatch(BALANCE_DECREMENT(amount));
 
       // 通知使用者已發出付款
-      sendNotification(user, selectedUser, btnText, amount, note);
+      sendNotification(
+        user,
+        userAccount,
+        selectedUser,
+        btnText,
+        amount,
+        note,
+        "done",
+      );
     }
 
     if (btnText === "request") {
       // 對使用者發出request
-      sendNotification(user, selectedUser, btnText, amount, note);
+      sendNotification(
+        user,
+        userAccount,
+        selectedUser,
+        btnText,
+        amount,
+        note,
+        "pending",
+      );
     }
     onPaymentClick();
   };
@@ -241,13 +262,24 @@ export async function userBalabceIncrement(user_account, amount) {
   });
 }
 
-export async function sendNotification(sender, recipient, type, amount, note) {
+export async function sendNotification(
+  sender,
+  sender_account_number,
+  recipient,
+  type,
+  amount,
+  note,
+  pendingStatus,
+) {
   await addDoc(collection(db, "users/notifications_doc/notifications"), {
     sender,
+    sender_account_number,
     recipient,
     type,
     amount: parseInt(amount),
     note,
+    pendingStatus,
+    timestamp: serverTimestamp(),
   });
 }
 

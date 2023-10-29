@@ -33,7 +33,6 @@ function Login() {
       passwordRef.current.value,
     )
       .then((userCredential) => {
-        console.log(userCredential.user);
         navigate("/home");
       })
       .catch((error) => {
