@@ -6,24 +6,24 @@
 <img width="1000" alt="截圖 2023-10-30 上午10 44 41" src="https://github.com/phoenix850508/transfer-app/assets/121414639/44868854-41ac-4560-bbb2-9d98c3abbcff">
 <img width="494" alt="截圖 2023-10-30 上午10 45 14" src="https://github.com/phoenix850508/transfer-app/assets/121414639/9d982c4e-df87-4e94-8d65-2f0849c7c354">
 
-This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance 
-and the public transaction timeline.
+This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance, public transaction timeline, and notifications from others.
 You are more than welcome to try transfer and request in this app: https://phoenix850508.github.io/transfer-app/
 
-The app is built to pay attribute to an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
-The original idea was to add React testing while building this app, so it inherits the ideas from the application that I pay attribute to. Though due to the time constrains,
-testings takes up too much time, so the primary goal is to strengthen the knowledge of Redux, Firebase, and TailwindCSS by building this project.
+The reference of this app's layout is from an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
+The original idea of that educational payment application was to teach how to make unit/e2e testing. Though due to the time constrains,
+testings may not be possible for me in a short period of time, so the primary goal of this project is to strengthen the knowledge of Redux, Firebase, and TailwindCSS by building this project.
 
 ## Features
 - User can signup/login to join this world of payment application
 - User can view all the public transactions in chronological order in the home page
-- User can view a specific date's public transactions
+- User can view a specific date's transactions in the public timeline
 - User can send a request or pay to selected users available in this application
-- The account balance in the dashboard will be udpated in both client-side and backend if actions were taken
-- User can edit thir own profile pictures and username
-- User will be notified when other users sends request or pays
-- Notifications are popped up when other users send a payment request
-- User can decide whether to accept or decline the request
+- User can search by username, email or account number to conduct a new transaction
+- The account balance in the dashboard will be udpated in both client-side and backend-side instantly if any actions were taken
+- User can edit thir own profile picture and username
+- User will be notified when other users sends requests or payments
+- Notifications are popped up when there's a pending payment to be resolved
+- User can decide whether to accept or decline the pending payment
 - RWD application
 
 ## Test accounts
