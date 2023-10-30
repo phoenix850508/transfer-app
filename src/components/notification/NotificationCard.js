@@ -12,6 +12,7 @@ import { db } from "utils/firebase";
 
 function NotificationCard({
   id,
+  userId,
   userSender,
   senderAccount,
   recipient,
@@ -22,7 +23,7 @@ function NotificationCard({
   timestamp,
 }) {
   const [isCanceled, setIsCanceled] = useState(false);
-  const [isButtonClick, setIsButtonClick] = useState(false);
+  const [isButtonShow, setIsButtonShow] = useState(false);
   const [status, setStatus] = useState(pendingStatus);
   const notificationRef = doc(db, "users/notifications_doc/notifications", id);
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function NotificationCard({
   // 若點擊request的Pay按鈕
   const handlePayClick = async (e) => {
     e.preventDefault();
-    setIsButtonClick(true);
+    setIsButtonShow(false);
     setStatus("done");
 
     // 更新request payment balance資訊
@@ -51,7 +52,7 @@ function NotificationCard({
   const handleCancelClick = async (e) => {
     e.preventDefault();
     setIsCanceled(true);
-    setIsButtonClick(true);
+    setIsButtonShow(false);
     setStatus("rejected");
 
     // 更新notification資料
@@ -64,9 +65,22 @@ function NotificationCard({
     // 若此request已經解決，cross out字樣並隱藏按鈕
     if (status === "rejected" && eventType === "request") {
       setIsCanceled(true);
-      setIsButtonClick(true);
-    } else if (status === "done" && eventType === "request") {
-      setIsButtonClick(true);
+      setIsButtonShow(false);
+    } else if (
+      // 若request已經被解決，或者發出人為自己，按鈕不該顯示
+      (status === "done" && eventType === "request") ||
+      (status === "pending" &&
+        eventType === "request" &&
+        userSender.uid === userId)
+    ) {
+      setIsButtonShow(false);
+    } else if (
+      // 若使用者為request接收人，顯示按鈕
+      status === "pending" &&
+      eventType === "request" &&
+      recipient.userId === userId
+    ) {
+      setIsButtonShow(true);
     }
   }, [eventType, status]);
   return (
@@ -94,9 +108,7 @@ function NotificationCard({
             {eventType === "pay" ? "paid" : "requested"}{" "}
             <span className="text-indigo-500">{recipient.name}</span>
           </div>
-          <p className="mt-2 text-gray-500">
-            {eventType === "pay" ? "PaidId" : "RequestId"}: {id}
-          </p>
+          <p className="mt-2 text-gray-500">TransactionId: {id}</p>
           <p className="mt-2 text-gray-500">Note: {note}</p>
           <p className="mt-2 text-gray-500">Status: {status}</p>
           <p className="mt-2 text-gray-500">{date}</p>
@@ -105,12 +117,27 @@ function NotificationCard({
           className={clsx(
             "grow flex justify-end items-center gap-3 pr-4 text-xl",
             {
-              "text-[green]": eventType === "pay",
+              // 若使用者為付款接收人/請款發起人，顯示綠色(正)
+              "text-[green]":
+                (eventType === "request" && recipient.userId !== userId) ||
+                (eventType === "pay" && recipient.userId === userId),
             },
-            { "text-[red]": eventType === "request" },
+            {
+              // 若使用者為付款發起人/請款接收人，顯示紅(負)
+              "text-[red]":
+                (eventType === "request" && recipient.userId === userId) ||
+                (eventType === "pay" && recipient.userId !== userId),
+            },
+            {
+              // 若使用者為請款接收人，且status為pending，顯示灰色
+              "text-gray-300":
+                status === "pending" &&
+                eventType === "request" &&
+                userSender.uid,
+            },
           )}
         >
-          {!isButtonClick && eventType === "request" && (
+          {isButtonShow && eventType === "request" && (
             <>
               <Button onButtonClick={handlePayClick} buttonText="Pay" />
               <Button
@@ -121,7 +148,10 @@ function NotificationCard({
             </>
           )}
           <span className={clsx({ "line-through": isCanceled })}>
-            {eventType === "request" ? `-${amount}` : amount}
+            {(eventType === "request" && recipient.userId === userId) ||
+            (eventType === "pay" && recipient.userId !== userId)
+              ? `-${amount}`
+              : amount}
           </span>
         </div>
       </div>

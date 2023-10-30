@@ -17,8 +17,9 @@ function Notification() {
   const userId = user.uid;
 
   useEffect(() => {
-    // 找出得到錢的通知
+    // 所有得到的通知
     const fetchNotifications = async () => {
+      // 寄給使用者的通知
       const q = query(
         collection(db, "users/notifications_doc/notifications"),
         where("recipient.userId", "==", userId),
@@ -28,6 +29,22 @@ function Notification() {
         const docData = doc.data();
         docData.notification_id = doc.id;
         if (docData.recipient.userId === userId) {
+          setNotifications((existingNoti) => {
+            return [...existingNoti, docData];
+          });
+        }
+      });
+
+      // 使用者寄出的通知
+      const qsend = query(
+        collection(db, "users/notifications_doc/notifications"),
+        where("sender.uid", "==", userId),
+      );
+      const querySendSnapshot = await getDocs(qsend);
+      querySendSnapshot.forEach((doc) => {
+        const docData = doc.data();
+        docData.notification_id = doc.id;
+        if (docData.sender.uid === userId) {
           setNotifications((existingNoti) => {
             return [...existingNoti, docData];
           });
@@ -55,6 +72,7 @@ function Notification() {
                 <NotificationCard
                   key={noti.notification_id}
                   id={noti.notification_id}
+                  userId={userId}
                   userSender={noti.sender}
                   senderAccount={noti.sender_account_number}
                   recipient={noti.recipient}
