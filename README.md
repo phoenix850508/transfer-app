@@ -1,11 +1,10 @@
 # Transfer-App
 
 ## 💰 Introduction
-<img width="1000" alt="截圖 2023-10-30 上午12 13 21" src="https://github.com/phoenix850508/transfer-app/assets/121414639/ea1d0b7e-6c36-412a-9440-bd7c36337673">
-<img width="1000" alt="截圖 2023-10-30 上午12 13 45" src="https://github.com/phoenix850508/transfer-app/assets/121414639/096867a9-5252-4296-b4d6-cd401381a8b3">
-<img width="1000" alt="截圖 2023-10-30 上午12 13 57" src="https://github.com/phoenix850508/transfer-app/assets/121414639/a214433f-e125-4f8e-ae75-9bc6a6deb25e">
-<img width="1000" alt="截圖 2023-10-30 上午12 14 12" src="https://github.com/phoenix850508/transfer-app/assets/121414639/c640524f-bf13-46a5-baab-8eb83a7a06a1">
-<img width="1000" alt="截圖 2023-10-30 上午12 17 13" src="https://github.com/phoenix850508/transfer-app/assets/121414639/110e6844-166f-433d-a4c3-bef2927bb921">
+<img width="1000" alt="截圖 2023-10-30 上午10 44 08" src="https://github.com/phoenix850508/transfer-app/assets/121414639/ed76a1bd-82bf-456a-994a-2a0145ad63d6">
+<img width="1000" alt="截圖 2023-10-30 上午10 44 22" src="https://github.com/phoenix850508/transfer-app/assets/121414639/2c34f27a-3dba-4b09-acc0-98c72c628f48">
+<img width="1000" alt="截圖 2023-10-30 上午10 44 41" src="https://github.com/phoenix850508/transfer-app/assets/121414639/44868854-41ac-4560-bbb2-9d98c3abbcff">
+<img width="494" alt="截圖 2023-10-30 上午10 45 14" src="https://github.com/phoenix850508/transfer-app/assets/121414639/9d982c4e-df87-4e94-8d65-2f0849c7c354">
 
 This side project is built mainly to practice Redux, Firebase and TailwindCSS, it is a payment applications for users to interact with one another, and in real-time sees the update on their account balance 
 and the public transaction timeline.
