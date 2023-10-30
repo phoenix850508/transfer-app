@@ -79,7 +79,6 @@ function Home() {
         selectedDate.month + 1
       }/${date}`;
     }
-    console.log(dateTextRef.current);
   };
 
   // 重新設定calendar顯示transaction的日期

@@ -6,9 +6,10 @@ import {
   userBalanceDecrement,
   userBalabceIncrement,
 } from "components/newTransaction/NewTransactionForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BALANCE_DECREMENT } from "components/redux/balance/balanceSlice";
 import { db } from "utils/firebase";
+import ToastAlert from "components/authentication/toasts/ToastAlert";
 
 function NotificationCard({
   id,
@@ -25,13 +26,23 @@ function NotificationCard({
   const [isCanceled, setIsCanceled] = useState(false);
   const [isButtonShow, setIsButtonShow] = useState(false);
   const [status, setStatus] = useState(pendingStatus);
+  const [isAlertShow, setIsAlertShow] = useState(false);
+  const [errorMsg, seterrorMsg] = useState("");
   const notificationRef = doc(db, "users/notifications_doc/notifications", id);
   const dispatch = useDispatch();
   const date = timestamp.toDate().toString();
+  const balanceValue = useSelector((state) => state.balance.value);
 
   // 若點擊request的Pay按鈕
   const handlePayClick = async (e) => {
     e.preventDefault();
+
+    // 若餘額不足以支付
+    if (balanceValue < amount) {
+      setIsAlertShow(true);
+      seterrorMsg("insufficient balance");
+      return;
+    }
     setIsButtonShow(false);
     setStatus("done");
 
@@ -138,14 +149,27 @@ function NotificationCard({
           )}
         >
           {isButtonShow && eventType === "request" && (
-            <>
+            <div className="relative flex gap-2">
+              <div
+                className={clsx(
+                  {
+                    "block absolute z-20 top-0 -translate-y-full": isAlertShow,
+                  },
+                  { hidden: !isAlertShow },
+                )}
+              >
+                <ToastAlert
+                  errorMessage={errorMsg}
+                  onCloseClick={() => setIsAlertShow(false)}
+                />
+              </div>
               <Button onButtonClick={handlePayClick} buttonText="Pay" />
               <Button
                 onButtonClick={handleCancelClick}
                 buttonText="Cancel"
                 action="cancel"
               />
-            </>
+            </div>
           )}
           <span className={clsx({ "line-through": isCanceled })}>
             {(eventType === "request" && recipient.userId === userId) ||
