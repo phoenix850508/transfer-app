@@ -1,5 +1,6 @@
 import { getAuth, updateProfile, signOut } from "firebase/auth";
 import { app, db } from "utils/firebase";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ToastInfo from "./toasts/ToastInfo";
@@ -33,11 +34,16 @@ function ProfileInit() {
       balance: 0,
     });
 
+    // 找出firestorage檔案相對路徑
+    const storage = getStorage(app);
+    const storageRef = ref(storage, "images/default_pig.png");
+    const url = await getDownloadURL(storageRef);
+
     // 將使用者個人資料加入FireStore
     await setDoc(doc(db, "users", `${user.uid}`), {
       userId: user.uid,
       name: firstName + " " + lastName,
-      photoURL: photoDefault,
+      photoURL: url,
       email: user.email,
       account_number,
     });
@@ -45,7 +51,7 @@ function ProfileInit() {
     // 更新Auth中profile資料
     updateProfile(auth.currentUser, {
       displayName: firstName + " " + lastName,
-      photoURL: photoDefault,
+      photoURL: url,
     })
       .then(() => {
         navigate("/home");

@@ -121,7 +121,7 @@ function NotificationCard({
             </>
           )}
           <span className={clsx({ "line-through": isCanceled })}>
-            ${amount}
+            {eventType === "request" ? `-${amount}` : amount}
           </span>
         </div>
       </div>
