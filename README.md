@@ -11,7 +11,7 @@ You are more than welcome to try transfer and request in this app: https://phoen
 
 The reference of this app's layout is from an [educational payment application](https://github.com/cypress-io/cypress-realworld-app) that I saw online.
 The original idea of that educational payment application was to teach how to make unit/e2e testing. Though due to the time constrains,
-testings may not be possible for me in a short period of time, so the primary goal of this project is to strengthen the knowledge of Redux, Firebase, and TailwindCSS by building this project.
+testings may not be possible for me in a short period of time, so the primary goal of this project is to strengthen the knowledge of Redux, Firebase, and TailwindCSS by introducing them to this project.
 
 ## Features
 - User can signup/login to join this world of payment application
