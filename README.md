@@ -20,7 +20,7 @@ testings may not be possible for me in a short period of time, so the primary go
 - User can send a request or pay to selected users available in this application
 - User can search by username, email or account number to conduct a new transaction
 - The account balance in the dashboard will be udpated in both client-side and backend-side instantly if any actions were taken
-- User can edit thir own profile picture and username
+- User can edit their own profile picture and username
 - User will be notified when other users sends requests or payments
 - Notifications are popped up when there's a pending payment to be resolved
 - User can decide whether to accept or decline the pending payment
